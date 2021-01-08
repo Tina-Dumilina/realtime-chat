@@ -1,0 +1,14 @@
+@import '~antd/dist/antd.css';
+@import 'fonts';
+
+body, html, #root {
+  height: 100%;
+}
+
+body {
+  min-width: 320px;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  color: #202020;
+}

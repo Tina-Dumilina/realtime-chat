@@ -1,0 +1,18 @@
+.input {
+  height: 56px;
+  font-family: inherit;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.1px;
+  color: #202020;
+
+  &::placeholder {
+    font-family: inherit;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.1px;
+    color: #b4b4b4;
+  }
+}
