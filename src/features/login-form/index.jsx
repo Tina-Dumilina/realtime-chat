@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {Form} from 'antd'
-import {Input} from 'ui/input'
+// import {Input} from 'ui/form-field'
 import {Button} from 'ui/button'
 import {Paper} from 'ui/paper'
 import styles from './styles.module.scss'
@@ -15,12 +15,12 @@ export const LoginForm = () => {
       </div>
       <Paper className={styles.auth__paper}>
         <Form name="login">
-          <Form.Item name="email" hasFeedback validateStatus="success">
+          {/* <Form.Item name="email" hasFeedback validateStatus="success">
             <Input type="email" placeholder="E-mail" />
           </Form.Item>
           <Form.Item name="password" hasFeedback validateStatus="error">
             <Input type="password" placeholder="Пароль" />
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item>
             <Button>Войти в аккаунт</Button>
           </Form.Item>

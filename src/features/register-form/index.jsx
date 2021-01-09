@@ -1,14 +1,41 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {useFormik} from 'formik'
 import {Form} from 'antd'
 import {InfoCircleTwoTone} from '@ant-design/icons'
-import {Input} from 'ui/input'
+import {FormField} from 'ui/form-field'
 import {Button} from 'ui/button'
 import {Paper} from 'ui/paper'
 import styles from './styles.module.scss'
 
 export const RegisterForm = () => {
-  const success = true
+  const success = false
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      // username: '',
+      // password: '',
+      // confirmation: '',
+    },
+    validate: (values) => {
+      console.log(values)
+      const errors = {}
+
+      if (!values.email) {
+        errors.email = 'Required'
+      }
+
+      return errors
+    },
+    onSubmit: (values) => {
+      console.log('onSubmit', values)
+      setSubmitting(true)
+      alert(JSON.stringify(values, null, 2))
+      setSubmitting(false)
+    },
+  })
+  const {handleSubmit, handleChange, handleBlur, isSubmitting, values, errors, touched} = formik
+
   return (
     <>
       <div className={styles.auth__top}>
@@ -17,21 +44,62 @@ export const RegisterForm = () => {
       </div>
       {!success ? (
         <Paper className={styles.auth__paper}>
-          <Form name="login">
-            <Form.Item name="email" hasFeedback validateStatus="success">
-              <Input type="email" placeholder="E-mail" />
+          <Form onSubmit={handleSubmit}>
+            <FormField
+              name="email"
+              placeholder="E-Mail"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              touched={touched}
+              errors={errors}
+              values={values}
+            />
+            {/* <Form.Item
+              name="username"
+              hasFeedback={values.username}
+              validateStatus={errors.username ? 'error' : 'success'}
+            >
+              <Input
+                id="username"
+                name="username"
+                placeholder="Ваше имя"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.username}
+              />
             </Form.Item>
-            <Form.Item name="username" hasFeedback validateStatus="success">
-              <Input placeholder="Ваше имя" />
+            <Form.Item
+              name="password"
+              hasFeedback={values.password}
+              validateStatus={errors.password ? 'error' : 'success'}
+            >
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Пароль"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password}
+              />
             </Form.Item>
-            <Form.Item name="password" hasFeedback validateStatus="error">
-              <Input type="password" placeholder="Пароль" />
-            </Form.Item>
-            <Form.Item name="confirmation" hasFeedback validateStatus="error">
-              <Input type="password" placeholder="Повторить пароль" />
-            </Form.Item>
+            <Form.Item
+              name="confirmation"
+              hasFeedback={values.confirmation}
+              validateStatus={errors.confirmation ? 'error' : 'success'}
+            >
+              <Input
+                id="confirmation"
+                name="confirmation"
+                type="password"
+                placeholder="Повторить пароль"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.confirmation}
+              />
+            </Form.Item> */}
             <Form.Item>
-              <Button>Зарегистрироваться</Button>
+              <Button disabled={isSubmitting}>Зарегистрироваться</Button>
             </Form.Item>
             <Link to="/login" className={styles.auth__link}>
               Войти в аккаунт
@@ -50,3 +118,24 @@ export const RegisterForm = () => {
     </>
   )
 }
+
+// export const RegisterForm = withFormik({
+//   mapPropsToValues: () => ({email: '', username: '', password: '', confirmation: ''}),
+
+//   // validate: (values) => {
+//   //   const errors = {}
+
+//   //   if (!values.name) {
+//   //     errors.name = 'Required'
+//   //   }
+
+//   //   return errors
+//   // },
+
+//   handleSubmit: (values, {setSubmitting}) => {
+//     console.log(values)
+//     setSubmitting(false)
+//   },
+
+//   displayName: 'RegisterForm',
+// })(BaseForm)

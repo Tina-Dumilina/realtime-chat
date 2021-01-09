@@ -7,7 +7,7 @@ import './styles/index.scss'
 export function App() {
   return (
     <Switch>
-      <Route exact path={['/', '/login']} component={Auth} />
+      <Route exact path={['/', '/login', '/register']} component={Auth} />
       <Route path="/im" component={Home} />
     </Switch>
   )
