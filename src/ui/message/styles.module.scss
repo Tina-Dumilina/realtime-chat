@@ -1,0 +1,123 @@
+.message {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 15px;
+
+  &__avatar {
+    margin-right: 14px;
+    margin-bottom: 23px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+
+    img {
+      object-fit: cover;
+      max-width: 100%;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 400px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__check {
+    margin-bottom: 8px;
+  }
+
+  &__bubble {
+    padding: 14px;
+    background: #3674ff;
+    box-shadow: 0px 5px 5px rgba(54, 116, 255, 0.196733);
+    border-radius: 12px 12px 12px 0px;
+  }
+
+  &__text {
+    margin: 0;
+    line-height: 20px;
+    color: #fff;
+  }
+
+  &__date {
+    display: block;
+    font-size: 12px;
+    line-height: 14px;
+    opacity: 0.5;
+  }
+}
+
+.message[data-is-author='true'] {
+  flex-direction: row-reverse;
+
+  .message__container {
+    align-items: flex-end;
+  }
+
+  .message__avatar {
+    margin-right: 0;
+    margin-left: 14px;
+  }
+
+  .message__content {
+    align-items: flex-end;
+  }
+
+  .message__check {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+  }
+
+  .message__bubble {
+    background: #ffffff;
+    border: 1px solid #ececec;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.0220444);
+    border-radius: 12px 12px 0px 12px;
+  }
+
+  .message__text {
+    color: #202020;
+  }
+
+  .message__status {
+    margin-right: 8px;
+    width: 15px;
+    height: 8px;
+    background: url('./no-checked.svg') no-repeat center;
+    &[data-read='true'] {
+      background: url('./checked.svg') no-repeat center;
+    }
+  }
+}
+
+.attachments {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  margin-top: 8px;
+
+  &__item {
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+
+    img {
+      max-width: 100%;
+      object-fit: cover;
+    }
+  }
+}
