@@ -3,32 +3,23 @@ import {Link} from 'react-router-dom'
 import {useFormik} from 'formik'
 import {Form} from 'antd'
 import {InfoCircleTwoTone} from '@ant-design/icons'
+import {validate} from 'lib/validate'
 import {FormField} from 'ui/form-field'
 import {Button} from 'ui/button'
 import {Paper} from 'ui/paper'
 import styles from './styles.module.scss'
 
 export const RegisterForm = () => {
-  const success = false
+  let success = false
   const formik = useFormik({
     initialValues: {
       email: '',
-      // username: '',
-      // password: '',
-      // confirmation: '',
+      username: '',
+      password: '',
+      confirmation: '',
     },
-    validate: (values) => {
-      console.log(values)
-      const errors = {}
-
-      if (!values.email) {
-        errors.email = 'Required'
-      }
-
-      return errors
-    },
-    onSubmit: (values) => {
-      console.log('onSubmit', values)
+    validate: (values) => validate(values),
+    onSubmit: (values, {setSubmitting}) => {
       setSubmitting(true)
       alert(JSON.stringify(values, null, 2))
       setSubmitting(false)
@@ -44,7 +35,7 @@ export const RegisterForm = () => {
       </div>
       {!success ? (
         <Paper className={styles.auth__paper}>
-          <Form onSubmit={handleSubmit}>
+          <Form>
             <FormField
               name="email"
               placeholder="E-Mail"
@@ -54,52 +45,39 @@ export const RegisterForm = () => {
               errors={errors}
               values={values}
             />
-            {/* <Form.Item
+            <FormField
               name="username"
-              hasFeedback={values.username}
-              validateStatus={errors.username ? 'error' : 'success'}
-            >
-              <Input
-                id="username"
-                name="username"
-                placeholder="Ваше имя"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.username}
-              />
-            </Form.Item>
-            <Form.Item
+              placeholder="Ваше имя"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              touched={touched}
+              errors={errors}
+              values={values}
+            />
+            <FormField
               name="password"
-              hasFeedback={values.password}
-              validateStatus={errors.password ? 'error' : 'success'}
-            >
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                placeholder="Пароль"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.password}
-              />
-            </Form.Item>
-            <Form.Item
+              placeholder="Пароль"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              touched={touched}
+              errors={errors}
+              values={values}
+              type="password"
+            />
+            <FormField
               name="confirmation"
-              hasFeedback={values.confirmation}
-              validateStatus={errors.confirmation ? 'error' : 'success'}
-            >
-              <Input
-                id="confirmation"
-                name="confirmation"
-                type="password"
-                placeholder="Повторить пароль"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.confirmation}
-              />
-            </Form.Item> */}
+              placeholder="Повторить пароль"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              touched={touched}
+              errors={errors}
+              values={values}
+              type="password"
+            />
             <Form.Item>
-              <Button disabled={isSubmitting}>Зарегистрироваться</Button>
+              <Button disabled={isSubmitting} loading={isSubmitting} onClick={handleSubmit}>
+                Зарегистрироваться
+              </Button>
             </Form.Item>
             <Link to="/login" className={styles.auth__link}>
               Войти в аккаунт
@@ -118,24 +96,3 @@ export const RegisterForm = () => {
     </>
   )
 }
-
-// export const RegisterForm = withFormik({
-//   mapPropsToValues: () => ({email: '', username: '', password: '', confirmation: ''}),
-
-//   // validate: (values) => {
-//   //   const errors = {}
-
-//   //   if (!values.name) {
-//   //     errors.name = 'Required'
-//   //   }
-
-//   //   return errors
-//   // },
-
-//   handleSubmit: (values, {setSubmitting}) => {
-//     console.log(values)
-//     setSubmitting(false)
-//   },
-
-//   displayName: 'RegisterForm',
-// })(BaseForm)
