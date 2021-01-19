@@ -1,6 +1,10 @@
 @import '~antd/dist/antd.css';
 @import 'fonts';
 
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
 body, html, #root {
   height: 100%;
 }

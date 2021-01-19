@@ -1,0 +1,56 @@
+.card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+
+  &__avatar {
+    margin-right: 12px;
+  }
+
+  &__content {
+    max-width: 228px;
+    width: 100%;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 5px;
+  }
+
+  &__user {
+    margin: 0;
+    font-weight: 500;
+    line-height: 16px;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
+  }
+
+  &__date {
+    font-size: 12px;
+    line-height: 14px;
+    opacity: 0.4;
+    text-transform: capitalize;
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__text {
+    margin: 0;
+    max-width: 206px;
+    line-height: 16px;
+    opacity: 0.4;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
+  }
+}
+
+
